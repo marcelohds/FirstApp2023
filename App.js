@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, TextInput, InputAccessoryView, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, InputAccessoryView, Image, TouchableOpacity, Component } from 'react-native';
 
 export default function App() {
 	const[nome, setNome] = useState("");
@@ -15,12 +15,29 @@ export default function App() {
 		setResultado(r);
 	}
 	
+	function subtrair(){
+	let r = parseFloat(valor1) - parseFloat(valor2);
+	setResultado(r);
+	}
+	
+	function multiplicar(){
+		let r = parseFloat(valor1) * parseFloat(valor2);
+		setResultado(r);
+	}
+	
+	function dividir(){
+		let r = parseFloat(valor1) / parseFloat(valor2);
+		setResultado(r);
+	}
+
 	function lerNome(){
 		setNome(nomeTxt);
 	}
 	
 	return (
-		<View style={styles.container}>		
+		<View style={styles.container}>	
+			
+			<Text style={styles.titulo}>Steve's Calculator</Text>
 			
 			<Image
 				style={styles.steve}
@@ -28,8 +45,6 @@ export default function App() {
 				  uri: 'https://elianaatihe.files.wordpress.com/2014/11/stevie_wonder.jpg',
 				}}
 			/>
-				
-			<Text style={styles.titulo}>Aplicativo do Balacobaco</Text>
 			
 			
 			<View style={styles.bloco}>
@@ -53,7 +68,7 @@ export default function App() {
 				<TextInput
 					style={styles.input}
 					value={valor1}
-					onChangeText={setValor1}
+					onChangeText={(valor)=>setValor1(valor)}
 				/>
 			</View>
 			
@@ -62,13 +77,25 @@ export default function App() {
 				<TextInput
 					style={styles.input}
 					value={valor2}
-					onChangeText={setValor2}
+					onChangeText={(valor)=>setValor2(valor)}
 				/>
 			</View>
 			
-			<View style={styles.bloco}>
-				<TouchableOpacity style={styles.botao} onPress={somar}>
+			<View style={styles.botao}>
+				<TouchableOpacity style={styles.botao1} onPress={somar}>
 					<Text style={styles.botaotxt}>Somar</Text>
+				</TouchableOpacity>
+				
+				<TouchableOpacity style={styles.botao1} onPress={subtrair}>
+					<Text style={styles.botaotxt}>Subtrair</Text>
+				</TouchableOpacity>
+				
+				<TouchableOpacity style={styles.botao1} onPress={multiplicar}>
+					<Text style={styles.botaotxt}>Multiplicar</Text>
+				</TouchableOpacity>
+				
+				<TouchableOpacity style={styles.botao1} onPress={dividir}>
+					<Text style={styles.botaotxt}>Dividir</Text>
 				</TouchableOpacity>
 			</View>
 			
@@ -101,7 +128,8 @@ const styles = StyleSheet.create({
 	},
 	
 	label1: {
-		marginTop: 20,
+		marginTop: 10,
+		marginBottom:10,
 	},
 	
 	input: {
@@ -119,12 +147,41 @@ const styles = StyleSheet.create({
 	
 	botao: {
 		margin: 10,
-		width: 150,
+		height: 30,
+		alignItems: 'baseline',
+		justifyContent: 'space-evenly',
+		backgroundColor: '#00FFFF',
+		flexDirection: 'row',
+		borderWidth: 1,
+		gap: 10,
+	},
+	
+	botao1: {
+		width: 90,
 		height: 30,
 		alignItems: 'center',
-		backgroundColor: '#00FFFF',
-		borderWidth: 1,
+		justifyContent: 'space-evenly',
 	},
+	
+	botao2: {
+		width: 90,
+		height: 30,
+		alignItems: 'center',
+
+	},
+	
+	botao3: {
+		width: 90,
+		height: 30,
+		alignItems: 'center',
+	},
+	
+	botao4: {
+		width: 90,
+		height: 30,
+		alignItems: 'center',
+	},
+	
 	
 	botaotxt: {
 		margin: 5,
